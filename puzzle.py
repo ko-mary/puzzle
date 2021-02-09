@@ -17,7 +17,16 @@ def check_lines(board: list) -> bool:
 def check_columns(board: list) -> bool:
     '''
     '''
-    pass
+    turned_board = []
+    size = len(board)
+    for number, line in enumerate(board):
+        if number == 0:
+            for element in line:
+                turned_board.append(element)
+            continue
+        for pointer in range(size):
+            turned_board[pointer] += line[pointer]
+    return check_columns(turned_board)
 
 
 def check_colour(board: list) -> bool:

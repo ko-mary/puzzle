@@ -32,7 +32,29 @@ def check_columns(board: list) -> bool:
 def check_colour(board: list) -> bool:
     '''
     '''
-    pass
+    start_line = 4
+    finish_line = 8
+    start_column = 0
+    for amount in range(5):
+        colour = []
+        for number, line in enumerate(board):
+            if number < start_line:
+                continue
+            current = line[start_column]
+            if current in colour:
+                return False
+            if current != ' ':
+                colour.append(current)
+            if number == finish_line:
+                for num in range(1, 5):
+                    if line[num] in colour:
+                        return False
+                    if line[num] != ' ':
+                        colour.append(line[num])
+        start_line -= 1
+        finish_line -= 1
+        start_column +=1
+    return True
 
 
 def validate_board(board: list) -> bool:

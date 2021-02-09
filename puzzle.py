@@ -1,10 +1,21 @@
 '''
 https://github.com/ko-mary/puzzle
 '''
-
+import doctest
 def check_lines(board: list) -> bool:
     '''
     Check if there is no problem with generated board lines.
+
+    >>> check_lines(["**** ****",\
+     "***1 ****",\
+      "**  3****",\
+       "* 4 1****",\
+        "     9 5 ",\
+         " 6  83  *",\
+          "3   1  **",\
+           "  8  2***",\
+            "  2  ****"])
+    True
     '''
     for line in board:
         for check_number, check_element in enumerate(line):
@@ -17,6 +28,18 @@ def check_lines(board: list) -> bool:
 
 def check_columns(board: list) -> bool:
     '''
+    Check if there is no problem with generated board columns.
+
+    >>> check_lines(["**** ****",\
+     "***1 ****",\
+      "**  3****",\
+       "* 4 1****",\
+        "     9 5 ",\
+         " 6  83  *",\
+          "3   1  **",\
+           "  8  2***",\
+            "  2  ****"])
+    False
     '''
     turned_board = []
     size = len(board)
@@ -32,6 +55,18 @@ def check_columns(board: list) -> bool:
 
 def check_colour(board: list) -> bool:
     '''
+    Check if there is no problem with generated board colors.
+
+    >>> check_lines(["**** ****",\
+     "***1 ****",\
+      "**  3****",\
+       "* 4 1****",\
+        "     9 5 ",\
+         " 6  83  *",\
+          "3   1  **",\
+           "  8  2***",\
+            "  2  ****"])
+    True
     '''
     start_line = 4
     finish_line = 8
@@ -48,6 +83,7 @@ def check_colour(board: list) -> bool:
                 colour.append(current)
             if number == finish_line:
                 for num in range(1, 5):
+                    num += start_column
                     if line[num] in colour:
                         return False
                     if line[num] != ' ' and line[num] != '*':
@@ -60,6 +96,18 @@ def check_colour(board: list) -> bool:
 
 def validate_board(board: list) -> bool:
     '''
+    Check if there is everything good with game's board.
+
+    >>> check_lines(["**** ****",\
+     "***1 ****",\
+      "**  3****",\
+       "* 4 1****",\
+        "     9 5 ",\
+         " 6  83  *",\
+          "3   1  **",\
+           "  8  2***",\
+            "  2  ****"])
+    False
     '''
     if check_lines(board) == False:
         return False
@@ -69,16 +117,4 @@ def validate_board(board: list) -> bool:
         return False
     return True
 
-
-
-print(check_colour([
- "**** ****",
- "***1 ****",
- "**  3****",
- "* 4 1****",
- "     9 5 ",
- " 6  83  *",
- "3   1  **",
- "  8  2***",
- "  2  ****"
-]))
+doctest.testmod()

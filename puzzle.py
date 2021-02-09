@@ -60,4 +60,10 @@ def check_colour(board: list) -> bool:
 def validate_board(board: list) -> bool:
     '''
     '''
-    pass
+    if check_lines(board) == False:
+        return False
+    if check_columns(board) == False:
+        return False
+    if check_colour(board) == False:
+        return False
+    return True

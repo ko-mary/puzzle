@@ -4,8 +4,9 @@ https://github.com/ko-mary/puzzle
 
 def check_lines(board: list) -> bool:
     '''
+    Check if there is no problem with generated board lines.
     '''
-    for line in range(board):
+    for line in board:
         for check_number, check_element in enumerate(line):
             if check_element != '*' and check_element != ' ':
                 for number, element in enumerate(line):
@@ -26,7 +27,7 @@ def check_columns(board: list) -> bool:
             continue
         for pointer in range(size):
             turned_board[pointer] += line[pointer]
-    return check_columns(turned_board)
+    return check_lines(turned_board)
 
 
 def check_colour(board: list) -> bool:
@@ -67,3 +68,17 @@ def validate_board(board: list) -> bool:
     if check_colour(board) == False:
         return False
     return True
+
+
+
+print(check_colour([
+ "**** ****",
+ "***1 ****",
+ "**  3****",
+ "* 4 1****",
+ "     9 5 ",
+ " 6  83  *",
+ "3   1  **",
+ "  8  2***",
+ "  2  ****"
+]))

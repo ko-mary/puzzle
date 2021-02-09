@@ -44,13 +44,13 @@ def check_colour(board: list) -> bool:
             current = line[start_column]
             if current in colour:
                 return False
-            if current != ' ':
+            if current != ' ' and current != '*':
                 colour.append(current)
             if number == finish_line:
                 for num in range(1, 5):
                     if line[num] in colour:
                         return False
-                    if line[num] != ' ':
+                    if line[num] != ' ' and line[num] != '*':
                         colour.append(line[num])
         start_line -= 1
         finish_line -= 1
